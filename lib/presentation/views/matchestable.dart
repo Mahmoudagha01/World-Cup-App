@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:world_cup/business_logic/cubit/services_cubit.dart';
 import 'package:world_cup/helper/constants.dart';
-import 'package:world_cup/presentation/widgets/grouptable.dart';
+
 
 class MatchTable extends StatefulWidget {
   const MatchTable({super.key});
@@ -178,9 +176,14 @@ class _MatchTableState extends State<MatchTable> {
                                                                 .table[
                                                                     tableindex]
                                                                 .team
-                                                                .name ==
-                                                            "United States"
-                                                        ? "USA"
+                                                                .name.length >=13
+                                                        ? state
+                                                                .data
+                                                                .standings[
+                                                                    index]
+                                                                .table[
+                                                                    tableindex]
+                                                                .team.tla
                                                         : state
                                                             .data
                                                             .standings[index]

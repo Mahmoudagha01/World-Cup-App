@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:world_cup/data/models/match.dart';
 
 import 'package:world_cup/data/repository/app_repository.dart';
 
@@ -11,10 +12,12 @@ part 'services_state.dart';
 class ServicesCubit extends Cubit<ServicesState> {
   ServicesCubit(
     this.appRepository,
-  
   ) : super(ServicesInitial());
   final AppRepository appRepository;
-  TableModel ?tableData;
+  TableModel? tableData;
+  MatchModel? matchData;
+
+
   Future<TableModel?> getStandings() async {
     try {
       emit(StandingsLoadingState());
@@ -24,5 +27,16 @@ class ServicesCubit extends Cubit<ServicesState> {
       emit(StandingsErrorState("Error in Fetching Data"));
     }
     return tableData;
+  }
+
+  Future<MatchModel?> getMatches() async {
+    try {
+      emit(MatchesLoadingState());
+      matchData = await appRepository.getMatches();
+      emit(MatchesLoadedState(matchData!));
+    } catch (e) {
+      emit(MatchesErrorState("Error in Fetching Data"));
+    }
+    return matchData;
   }
 }

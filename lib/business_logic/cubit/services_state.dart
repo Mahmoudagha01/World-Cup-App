@@ -18,3 +18,17 @@ class StandingsErrorState extends ServicesState {
 
   StandingsErrorState(this.message);
 }
+
+class MatchesLoadingState extends ServicesState {}
+
+class MatchesLoadedState extends ServicesState {
+  final MatchModel data;
+
+  MatchesLoadedState(this.data);
+}
+
+class MatchesErrorState extends ServicesState {
+  final String message;
+
+  MatchesErrorState(this.message);
+}
