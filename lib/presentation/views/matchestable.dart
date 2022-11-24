@@ -27,7 +27,7 @@ class _MatchTableState extends State<MatchTable> {
         return const Center(child: CircularProgressIndicator());
       } else if (state is StandingsLoadedState) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
           child: ListView.builder(
               itemCount: state.data.standings.length,
               itemBuilder: (context, index) {

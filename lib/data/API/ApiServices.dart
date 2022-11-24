@@ -20,4 +20,13 @@ class APIServices {
     });
     return response.data;
   }
+
+    Future<Map<String, dynamic>> getNews() async {
+    final response = await dio.get(newsBaseUrl, queryParameters: {
+      "country": "us",
+      "category": "sports",
+      "apiKey": "81f8a675e316437a9d1e5486957cbf19",
+    });
+    return response.data;
+  }
 }

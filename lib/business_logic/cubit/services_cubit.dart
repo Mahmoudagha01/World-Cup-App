@@ -2,6 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:world_cup/data/models/match.dart';
+import 'package:world_cup/data/models/news.dart';
 
 import 'package:world_cup/data/repository/app_repository.dart';
 
@@ -16,7 +17,7 @@ class ServicesCubit extends Cubit<ServicesState> {
   final AppRepository appRepository;
   TableModel? tableData;
   MatchModel? matchData;
-
+  NewsModel? newsData;
 
   Future<TableModel?> getStandings() async {
     try {
@@ -39,4 +40,6 @@ class ServicesCubit extends Cubit<ServicesState> {
     }
     return matchData;
   }
+
+  
 }

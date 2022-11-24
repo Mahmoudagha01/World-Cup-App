@@ -10,9 +10,29 @@ class Layout extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GlobalCubit, GlobalState>(
       builder: (context, state) {
-       
         return Scaffold(
-      
+          appBar: AppBar(
+           
+            backgroundColor: Colors.white,
+            title: Row(
+              
+              mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    "assets/images/qatar.png",
+                    width: MediaQuery.of(context).size.width * 0.21,
+                    
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset("assets/images/logo.png",width: 50,height:40,),
+                ),
+              ],
+            ),
+          ),
           bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: primaryColor,
             unselectedItemColor: Colors.grey,
@@ -20,14 +40,11 @@ class Layout extends StatelessWidget {
             onTap: BlocProvider.of<GlobalCubit>(context).changeNavBar,
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded),
-                label: 'Home'
-              ),
+                  icon: Icon(Icons.home_rounded), label: 'Home'),
               BottomNavigationBarItem(
                 icon: Icon(Icons.table_chart),
                 label: 'Groups',
               ),
-             
             ],
           ),
           body: BlocProvider.of<GlobalCubit>(context)
@@ -37,4 +54,3 @@ class Layout extends StatelessWidget {
     );
   }
 }
-

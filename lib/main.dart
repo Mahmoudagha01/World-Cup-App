@@ -7,6 +7,8 @@ import 'package:world_cup/data/repository/app_repository.dart';
 import 'package:world_cup/helper/router.dart';
 import 'package:world_cup/helper/routs.dart';
 
+import 'business_logic/cubit/news_cubit.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -25,6 +27,9 @@ class MyApp extends StatelessWidget {
           create: (context) => ServicesCubit(
             AppRepository(apiServices: APIServices()),
           ),
+        ),
+         BlocProvider(
+          create: (context) =>NewsCubit(AppRepository(apiServices: APIServices()))
         ),
       ],
       child:  MaterialApp(

@@ -1,4 +1,5 @@
 class AppRoutes{
   static const String layout='/';
     static const String home='/home';
+    static const String finishedMatches='/finish';
 }
