@@ -55,6 +55,7 @@ class Carousel extends StatelessWidget {
             children: [
               Text(DateFormat.MMMMEEEEd()
                                         .format(date),style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white70)),
+              const SizedBox(height: 5,),
               Text(title,style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white)),
             ],
           ),

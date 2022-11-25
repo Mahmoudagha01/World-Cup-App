@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:world_cup/data/models/news.dart';
 import 'package:world_cup/helper/routs.dart';
 import 'package:world_cup/presentation/views/finishedmatch.dart';
 import 'package:world_cup/presentation/views/layout.dart';
+import 'package:world_cup/presentation/views/newsdetails.dart';
 import '../presentation/views/home.dart';
 
 Route<dynamic> onGenerate(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutes.layout:
       return MaterialPageRoute(builder: (context) => const Layout());
- case AppRoutes.home:
+    case AppRoutes.home:
       return MaterialPageRoute(builder: (context) => const Home());
-      case AppRoutes.finishedMatches:
+    case AppRoutes.finishedMatches:
       return MaterialPageRoute(builder: (context) => const FinishedMatches());
+    case AppRoutes.newsDeails:
+      final data = settings.arguments as Articles;
+      return MaterialPageRoute(
+          builder: (context) => NewsDetails(
+                data: data,
+              ));
     default:
       return MaterialPageRoute(builder: ((context) => const Home()));
   }

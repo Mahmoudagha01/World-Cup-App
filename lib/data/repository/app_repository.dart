@@ -22,7 +22,6 @@ class AppRepository {
 
   Future<NewsModel> getNews() async {
     final data = await apiServices.getNews();
-    print(data);
     return NewsModel.fromJson(data);
   }
 }

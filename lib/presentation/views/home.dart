@@ -16,12 +16,12 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>{
+class _HomeState extends State<Home> {
   @override
-  void initState(){
+  void initState() {
     BlocProvider.of<NewsCubit>(context).getNews();
-     BlocProvider.of<ServicesCubit>(context).getMatches();
-   
+    BlocProvider.of<ServicesCubit>(context).getMatches();
+
     super.initState();
   }
 
@@ -29,23 +29,30 @@ class _HomeState extends State<Home>{
   Widget build(BuildContext context) {
     return SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-              children: [
+      child: Column(
+        children: [
           BlocBuilder<NewsCubit, NewsState>(
             builder: (context, state) {
               if (state is NewsLoadingState) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is NewsLoadedState) {
+                final data = state.data.articles;
                 return CarouselSlider.builder(
                     itemCount: state.data.articles.length,
                     options: CarouselOptions(
                         initialPage: 0,
                         autoPlay: true,
                         height: MediaQuery.of(context).size.height * 0.25),
-                    itemBuilder: (context, index, i) => Carousel(
-                          date: state.data.articles[index].publishedAt,
-                          images: state.data.articles[index].urlToImage,
-                          title: state.data.articles[index].title,
+                    itemBuilder: (context, index, i) => InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, AppRoutes.newsDeails,
+                                arguments: data[index]);
+                          },
+                          child: Carousel(
+                            date: data[index].publishedAt,
+                            images: data[index].urlToImage,
+                            title: data[index].title,
+                          ),
                         ));
               } else if (state is NewsErrorState) {
                 return Center(child: Text(state.message));
@@ -54,29 +61,27 @@ class _HomeState extends State<Home>{
               }
             },
           ),
-            Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("Finished Matches"),
-                          InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, AppRoutes.finishedMatches);
-                              },
-                              child: const Text(
-                                "Show All>>",
-                                style: TextStyle(color: primaryColor),
-                              ))
-                        ],
-                      ),
-                    ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Finished Matches"),
+                InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.finishedMatches);
+                    },
+                    child: const Text(
+                      "Show All>>",
+                      style: TextStyle(color: primaryColor),
+                    ))
+              ],
+            ),
+          ),
           BlocBuilder<ServicesCubit, ServicesState>(
             builder: (context, state) {
               if (state is MatchesLoadingState) {
-                return  const Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else if (state is MatchesLoadedState) {
                 final data = state.data.data.match.reversed.toList();
                 return SizedBox(
@@ -89,11 +94,9 @@ class _HomeState extends State<Home>{
                     itemBuilder: (context, index) {
                       return MatchCard(
                         homeTeam: data[index].homeName,
-                        homeImage:
-                            "assets/images/${data[index].homeName}.svg",
+                        homeImage: "assets/images/${data[index].homeName}.svg",
                         awayTeam: data[index].awayName,
-                        awayImage:
-                            "assets/images/${data[index].awayName}.svg",
+                        awayImage: "assets/images/${data[index].awayName}.svg",
                         compettion: data[index].status,
                         date: data[index].date,
                         awayScore: data[index].ftScore.split('-').last,
@@ -109,9 +112,8 @@ class _HomeState extends State<Home>{
               }
             },
           ),
-          
-              ],
-            ),
-        ));
+        ],
+      ),
+    ));
   }
 }
