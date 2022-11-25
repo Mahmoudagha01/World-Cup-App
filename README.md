@@ -55,7 +55,7 @@ presentation
 ```
 
 ### Helper
-This folder containes Network helper , shared Prefereace and Local notifiation.
+This folder containes router generator and constants.
 ```
 helper 
 ├── constants.dart
