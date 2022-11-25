@@ -7,8 +7,7 @@ You can see a video [Here](https://drive.google.com/file/d/1gRWLMOkkXE_vd5VqA8yJ
 
   Splash screen                 |   Home screen        | Home screen | Finshed Matches screen 
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![photo_2022-11-25_21-15-48](https://user-images.githubusercontent.com/55716560/204043947-9d542ca4-2043-429c-b376-443273020905.jpg)|![photo_2022-11-25_21-15-55](https://user-images.githubusercontent.com/55716560/204043972-cfd1ce77-6662-451f-a9e7-c95a8b5ee6c5.jpg)|![photo_2022-11-25_21-21-28](https://user-images.githubusercontent.com/55716560/204044390-a1b1b0d6-ea1c-4215-905e-8ef87622e3f5.jpg)
-|![photo_2022-11-25_21-18-48](https://user-images.githubusercontent.com/55716560/204044141-87281015-0d4c-4c94-81a7-4fa565bcd90b.jpg)
+![photo_2022-11-25_21-15-48](https://user-images.githubusercontent.com/55716560/204043947-9d542ca4-2043-429c-b376-443273020905.jpg)|![photo_2022-11-25_21-15-55](https://user-images.githubusercontent.com/55716560/204043972-cfd1ce77-6662-451f-a9e7-c95a8b5ee6c5.jpg)|![photo_2022-11-25_21-21-28](https://user-images.githubusercontent.com/55716560/204044390-a1b1b0d6-ea1c-4215-905e-8ef87622e3f5.jpg)|![photo_2022-11-25_21-18-48](https://user-images.githubusercontent.com/55716560/204044141-87281015-0d4c-4c94-81a7-4fa565bcd90b.jpg)
 
 
   Upcoming Matches Screen screen                 |   Match Stats screen        |  News Details Screen  | Groups Table Screen 
