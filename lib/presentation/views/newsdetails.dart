@@ -84,15 +84,7 @@ class NewsDetails extends StatelessWidget {
           TextButton(
               onPressed: () async {
                 Uri url = Uri.parse(data.url);
-                await canLaunchUrl(url)
-                    ? await launchUrl(url)
-                    :  ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Could not launch this Link",
-                          ),
-                        ),
-                      );
+                await launchUrl(url);
               },
               child: const Text(
                 "Read the full article here",

@@ -6,6 +6,8 @@ import 'package:world_cup/helper/constants.dart';
 
 import 'package:world_cup/presentation/widgets/matchcard.dart';
 
+import '../../helper/routs.dart';
+
 class FinishedMatches extends StatefulWidget {
   const FinishedMatches({super.key});
 
@@ -26,9 +28,11 @@ class _FinishedMatchesState extends State<FinishedMatches> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text("Finished Matches",style: TextStyle(fontSize: 18,color: primaryColor),),
+        title: const Text(
+          "Finished Matches",
+          style: TextStyle(fontSize: 18, color: primaryColor),
+        ),
         actions: [
-          
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset("assets/images/logo.png"),
@@ -37,10 +41,14 @@ class _FinishedMatchesState extends State<FinishedMatches> {
         leading: Row(
           children: [
             IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back_ios_new,color: primaryColor,),),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
+                color: primaryColor,
+              ),
+            ),
           ],
         ),
       ),
@@ -53,15 +61,21 @@ class _FinishedMatchesState extends State<FinishedMatches> {
             return ListView.builder(
               itemCount: state.data.data.match.length,
               itemBuilder: (context, index) {
-                return MatchCard(
-                  homeTeam: data[index].homeName,
-                  homeImage: "assets/images/${data[index].homeName}.svg",
-                  awayTeam: data[index].awayName,
-                  awayImage: "assets/images/${data[index].awayName}.svg",
-                  compettion: data[index].status,
-                  date: data[index].date,
-                  awayScore: data[index].ftScore.split('-').last,
-                  homeScore: data[index].ftScore.split('-').first,
+                return InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.matchDetails,
+                        arguments: data[index]);
+                  },
+                  child: MatchCard(
+                    homeTeam: data[index].homeName,
+                    homeImage: "assets/images/${data[index].homeName}.svg",
+                    awayTeam: data[index].awayName,
+                    awayImage: "assets/images/${data[index].awayName}.svg",
+                    compettion: data[index].status,
+                    date: data[index].date,
+                    awayScore: data[index].ftScore.split('-').last,
+                    homeScore: data[index].ftScore.split('-').first,
+                  ),
                 );
               },
             );

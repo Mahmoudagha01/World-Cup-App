@@ -19,6 +19,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
+  
     BlocProvider.of<NewsCubit>(context).getNews();
     BlocProvider.of<ServicesCubit>(context).getMatches();
 
@@ -113,7 +114,65 @@ class _HomeState extends State<Home> {
               } else if (state is MatchesErrorState) {
                 return Center(child: Text(state.message));
               } else {
+                return const SizedBox(child: Text("data"),);
+              }
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Upcoming Matches"),
+                InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.finishedMatches);
+                    },
+                    child: const Text(
+                      "Show All>>",
+                      style: TextStyle(color: primaryColor),
+                    ))
+              ],
+            ),
+          ),
+          BlocBuilder<ServicesCubit, ServicesState>(
+            builder: (context, state) {
+              if (state is MatchesLoadingState) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is MatchesLoadedState) {
+                final data = state.data.data.match.reversed.toList();
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(
+                    itemCount: state.data.data.match.length ~/
+                            state.data.data.match.length +
+                        3,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: (){
+                          Navigator.pushNamed(context, AppRoutes.matchDetails,arguments:data[index] );
+                        },
+                        child: MatchCard(
+                          homeTeam: data[index].homeName,
+                          homeImage: "assets/images/${data[index].homeName}.svg",
+                          awayTeam: data[index].awayName,
+                          awayImage: "assets/images/${data[index].awayName}.svg",
+                          compettion: data[index].status,
+                          date: data[index].date,
+                          awayScore: data[index].ftScore.split('-').last,
+                          homeScore: data[index].ftScore.split('-').first,
+                        ),
+                      );
+                    },
+                  ),
+                );
+              } else if (state is MatchesErrorState) {
+                return Center(child: Text(state.message));
+              } else if(state is ServicesInitial){
                 return const SizedBox();
+              }else{
+                return const SizedBox(child: Text("data"),);
               }
             },
           ),
@@ -121,4 +180,6 @@ class _HomeState extends State<Home> {
       ),
     ));
   }
+  
+ 
 }

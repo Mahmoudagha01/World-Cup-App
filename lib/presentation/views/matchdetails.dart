@@ -46,6 +46,7 @@ class _MatchDetailsState extends State<MatchDetails> {
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
+            BlocProvider.of<ServicesCubit>(context).getMatches();
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
@@ -56,7 +57,9 @@ class _MatchDetailsState extends State<MatchDetails> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             MatchCard(
                 homeTeam: widget.matchData.homeName,
                 homeImage: 'assets/images/${widget.matchData.homeName}.svg',
@@ -84,7 +87,8 @@ class _MatchDetailsState extends State<MatchDetails> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -94,7 +98,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                               ),
                               Text(
                                 "Possession".toUpperCase(),
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: primaryColor),
                               ),
                               Text(
                                 "${state.data.data.possesion.split(":").last}%",
@@ -104,17 +111,24 @@ class _MatchDetailsState extends State<MatchDetails> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                state.data.data.shotsoffTarget.split(":").first,
-                                style: Theme.of(context).textTheme.bodyLarge
-                              ),
+                                  state.data.data.shotsoffTarget
+                                      .split(":")
+                                      .first,
+                                  style: Theme.of(context).textTheme.bodyLarge),
                               Text(
                                 "SHOTS",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor,),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(
+                                      color: primaryColor,
+                                    ),
                               ),
                               Text(
                                 state.data.data.shotsoffTarget.split(":").last,
@@ -124,7 +138,8 @@ class _MatchDetailsState extends State<MatchDetails> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -134,7 +149,12 @@ class _MatchDetailsState extends State<MatchDetails> {
                               ),
                               Text(
                                 "SHOTS ON TARGET",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor,),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(
+                                      color: primaryColor,
+                                    ),
                               ),
                               Text(
                                 state.data.data.shotsonTarget.split(":").last,
@@ -144,7 +164,8 @@ class _MatchDetailsState extends State<MatchDetails> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -154,7 +175,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                               ),
                               Text(
                                 "CORNERS",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: primaryColor),
                               ),
                               Text(
                                 state.data.data.corners.split(":").last,
@@ -164,7 +188,8 @@ class _MatchDetailsState extends State<MatchDetails> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -174,7 +199,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                               ),
                               Text(
                                 "PENALTIES",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: primaryColor),
                               ),
                               Text(
                                 state.data.data.penalties.split(":").last,
@@ -184,7 +212,8 @@ class _MatchDetailsState extends State<MatchDetails> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -194,7 +223,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                               ),
                               Text(
                                 "FOULS",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: primaryColor),
                               ),
                               Text(
                                 state.data.data.fauls.split(":").last,
@@ -203,8 +235,9 @@ class _MatchDetailsState extends State<MatchDetails> {
                             ],
                           ),
                         ),
-                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -214,7 +247,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                               ),
                               Text(
                                 "OFFSIDES",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: primaryColor),
                               ),
                               Text(
                                 state.data.data.offsides.split(":").last,
@@ -224,7 +260,8 @@ class _MatchDetailsState extends State<MatchDetails> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -234,7 +271,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                               ),
                               Text(
                                 "YELLOW CARDS",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: primaryColor),
                               ),
                               Text(
                                 state.data.data.yellowCards.split(":").last,
@@ -244,7 +284,8 @@ class _MatchDetailsState extends State<MatchDetails> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 30),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 30),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -254,7 +295,10 @@ class _MatchDetailsState extends State<MatchDetails> {
                               ),
                               Text(
                                 "RED CARDS",
-                                style: Theme.of(context).textTheme.headline6!.copyWith(color: primaryColor),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: primaryColor),
                               ),
                               Text(
                                 state.data.data.redCards.split(":").last,

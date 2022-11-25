@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: onGenerate,
-        initialRoute: AppRoutes.layout,
+        initialRoute: AppRoutes.splash,
       ),
     );
   }
