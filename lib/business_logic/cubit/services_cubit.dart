@@ -7,6 +7,7 @@ import 'package:world_cup/data/models/news.dart';
 import 'package:world_cup/data/repository/app_repository.dart';
 
 import '../../data/models/standing.dart';
+import '../../data/models/stats.dart';
 
 part 'services_state.dart';
 
@@ -18,7 +19,7 @@ class ServicesCubit extends Cubit<ServicesState> {
   TableModel? tableData;
   MatchModel? matchData;
   NewsModel? newsData;
-
+  StatsModel? statsData;
   Future<TableModel?> getStandings() async {
     try {
       emit(StandingsLoadingState());
@@ -41,5 +42,14 @@ class ServicesCubit extends Cubit<ServicesState> {
     return matchData;
   }
 
-  
+  Future<StatsModel?> getMatchDetails(int id) async {
+    try {
+      emit(MatchdetailsLoadingState());
+      statsData = await appRepository.getMatchStats(id);
+      emit(MatchdetailsLoadedState(statsData!));
+    } catch (e) {
+      emit(MatchdetailsErrorState(e.toString()));
+    }
+    return statsData;
+  }
 }

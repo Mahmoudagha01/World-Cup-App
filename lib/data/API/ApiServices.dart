@@ -29,4 +29,13 @@ class APIServices {
     });
     return response.data;
   }
+
+  Future<Map<String,dynamic>> getMatchDetails(int id)async{
+    final response=await dio.get(matchesDetailsUrl,queryParameters: {
+      "match_id":id,
+      "key": "demo_key",
+      "secret": "demo_secret",
+    });
+    return response.data;
+  }
 }

@@ -6,7 +6,6 @@ import 'package:world_cup/data/API/ApiServices.dart';
 import 'package:world_cup/data/repository/app_repository.dart';
 import 'package:world_cup/helper/router.dart';
 import 'package:world_cup/helper/routs.dart';
-
 import 'business_logic/cubit/news_cubit.dart';
 
 void main() {

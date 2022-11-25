@@ -32,3 +32,17 @@ class MatchesErrorState extends ServicesState {
 
   MatchesErrorState(this.message);
 }
+
+class MatchdetailsLoadingState extends ServicesState {}
+
+class MatchdetailsLoadedState extends ServicesState {
+  final StatsModel data;
+
+  MatchdetailsLoadedState(this.data);
+}
+
+class MatchdetailsErrorState extends ServicesState {
+  final String message;
+
+  MatchdetailsErrorState(this.message);
+}

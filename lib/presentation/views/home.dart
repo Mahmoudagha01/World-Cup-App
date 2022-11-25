@@ -92,15 +92,20 @@ class _HomeState extends State<Home> {
                             state.data.data.match.length +
                         3,
                     itemBuilder: (context, index) {
-                      return MatchCard(
-                        homeTeam: data[index].homeName,
-                        homeImage: "assets/images/${data[index].homeName}.svg",
-                        awayTeam: data[index].awayName,
-                        awayImage: "assets/images/${data[index].awayName}.svg",
-                        compettion: data[index].status,
-                        date: data[index].date,
-                        awayScore: data[index].ftScore.split('-').last,
-                        homeScore: data[index].ftScore.split('-').first,
+                      return InkWell(
+                        onTap: (){
+                          Navigator.pushNamed(context, AppRoutes.matchDetails,arguments:data[index] );
+                        },
+                        child: MatchCard(
+                          homeTeam: data[index].homeName,
+                          homeImage: "assets/images/${data[index].homeName}.svg",
+                          awayTeam: data[index].awayName,
+                          awayImage: "assets/images/${data[index].awayName}.svg",
+                          compettion: data[index].status,
+                          date: data[index].date,
+                          awayScore: data[index].ftScore.split('-').last,
+                          homeScore: data[index].ftScore.split('-').first,
+                        ),
                       );
                     },
                   ),
