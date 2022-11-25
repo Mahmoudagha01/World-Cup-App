@@ -38,4 +38,14 @@ class APIServices {
     });
     return response.data;
   }
+
+    Future<Map<String, dynamic>> getUpcomingMatches() async {
+    final response = await dio.get(upcomingMatchesurl, queryParameters: {
+      "key": "demo_key",
+      "secret": "demo_secret",
+      "competition_id": 362,
+      
+    });
+    return response.data;
+  }
 }

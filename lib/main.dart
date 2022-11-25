@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:world_cup/business_logic/cubit/global_cubit.dart';
 import 'package:world_cup/business_logic/cubit/services_cubit.dart';
+import 'package:world_cup/business_logic/cubit/upcoming_matches_cubit.dart';
 import 'package:world_cup/data/API/ApiServices.dart';
 import 'package:world_cup/data/repository/app_repository.dart';
 import 'package:world_cup/helper/router.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         ),
          BlocProvider(
           create: (context) =>NewsCubit(AppRepository(apiServices: APIServices()))
+        ),
+         BlocProvider(
+          create: (context) =>UpcomingMatchesCubit(AppRepository(apiServices: APIServices()))
         ),
       ],
       child:  MaterialApp(

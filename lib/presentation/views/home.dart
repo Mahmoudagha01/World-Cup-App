@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:world_cup/business_logic/cubit/news_cubit.dart';
 import 'package:world_cup/business_logic/cubit/services_cubit.dart';
+import 'package:world_cup/business_logic/cubit/upcoming_matches_cubit.dart';
 import 'package:world_cup/helper/constants.dart';
 import 'package:world_cup/helper/routs.dart';
 import 'package:world_cup/presentation/widgets/matchcard.dart';
@@ -19,10 +20,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   void initState() {
-  
     BlocProvider.of<NewsCubit>(context).getNews();
     BlocProvider.of<ServicesCubit>(context).getMatches();
-
+    BlocProvider.of<UpcomingMatchesCubit>(context).getUpcomingMatches();
     super.initState();
   }
 
@@ -89,19 +89,20 @@ class _HomeState extends State<Home> {
                   height: MediaQuery.of(context).size.height * 0.5,
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
-                    itemCount: state.data.data.match.length ~/
-                            state.data.data.match.length +
-                        3,
+                    itemCount: data.length ~/ data.length + 3,
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: (){
-                          Navigator.pushNamed(context, AppRoutes.matchDetails,arguments:data[index] );
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.matchDetails,
+                              arguments: data[index]);
                         },
                         child: MatchCard(
                           homeTeam: data[index].homeName,
-                          homeImage: "assets/images/${data[index].homeName}.svg",
+                          homeImage:
+                              "assets/images/${data[index].homeName}.svg",
                           awayTeam: data[index].awayName,
-                          awayImage: "assets/images/${data[index].awayName}.svg",
+                          awayImage:
+                              "assets/images/${data[index].awayName}.svg",
                           compettion: data[index].status,
                           date: data[index].date,
                           awayScore: data[index].ftScore.split('-').last,
@@ -114,7 +115,9 @@ class _HomeState extends State<Home> {
               } else if (state is MatchesErrorState) {
                 return Center(child: Text(state.message));
               } else {
-                return const SizedBox(child: Text("data"),);
+                return const SizedBox(
+                  child: Text("data"),
+                );
               }
             },
           ),
@@ -126,7 +129,7 @@ class _HomeState extends State<Home> {
                 const Text("Upcoming Matches"),
                 InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.finishedMatches);
+                      Navigator.pushNamed(context, AppRoutes.upcomingMatches);
                     },
                     child: const Text(
                       "Show All>>",
@@ -135,44 +138,40 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          BlocBuilder<ServicesCubit, ServicesState>(
+          BlocBuilder<UpcomingMatchesCubit, UpcomingMatchesState>(
             builder: (context, state) {
-              if (state is MatchesLoadingState) {
+              if (state is UpcomingMatchesLoading) {
                 return const Center(child: CircularProgressIndicator());
-              } else if (state is MatchesLoadedState) {
-                final data = state.data.data.match.reversed.toList();
+              } else if (state is UpcomingMatchesLoaded) {
+                final data = state.data.data.fixtures;
                 return SizedBox(
                   height: MediaQuery.of(context).size.height * 0.5,
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
-                    itemCount: state.data.data.match.length ~/
-                            state.data.data.match.length +
-                        3,
+                    itemCount: data.length ~/ data.length + 3,
                     itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: (){
-                          Navigator.pushNamed(context, AppRoutes.matchDetails,arguments:data[index] );
-                        },
-                        child: MatchCard(
-                          homeTeam: data[index].homeName,
-                          homeImage: "assets/images/${data[index].homeName}.svg",
-                          awayTeam: data[index].awayName,
-                          awayImage: "assets/images/${data[index].awayName}.svg",
-                          compettion: data[index].status,
-                          date: data[index].date,
-                          awayScore: data[index].ftScore.split('-').last,
-                          homeScore: data[index].ftScore.split('-').first,
-                        ),
+                      return MatchCard(
+                        homeTeam: data[index].homeName,
+                        homeImage: "assets/images/${data[index].homeName}.svg",
+                        awayTeam: data[index].awayName,
+                        awayImage: "assets/images/${data[index].awayName}.svg",
+                        compettion:
+                            "${data[index].time.split(":").first}:${data[index].time.split(":").last}",
+                        date: data[index].date,
+                        awayScore: data[index].ftScore.split(':').last,
+                        homeScore: data[index].ftScore.split(':').first,
                       );
                     },
                   ),
                 );
-              } else if (state is MatchesErrorState) {
+              } else if (state is UpcomingMatchesError) {
                 return Center(child: Text(state.message));
-              } else if(state is ServicesInitial){
+              } else if (state is ServicesInitial) {
                 return const SizedBox();
-              }else{
-                return const SizedBox(child: Text("data"),);
+              } else {
+                return const SizedBox(
+                  child: Text("data"),
+                );
               }
             },
           ),
@@ -180,6 +179,4 @@ class _HomeState extends State<Home> {
       ),
     ));
   }
-  
- 
 }
