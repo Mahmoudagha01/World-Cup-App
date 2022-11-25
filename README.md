@@ -19,7 +19,6 @@ lib
 ├── data
 ├── presentation
 ├── helper
-├── Utilities
 └── main.dart
 ```
 
@@ -28,9 +27,9 @@ This folder containes the business logic of the application specificly state man
 
 ```
 business_logic
-├── Auth_cubit
-├── OTPAuth_cubit
-├── Productl_cubit
+├── Services_cubit
+├── News_cubit
+├── _cubit
 └── help_cubit
 ```
 
