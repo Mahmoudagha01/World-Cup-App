@@ -5,9 +5,13 @@ You can see a video [Here](https://drive.google.com/file/d/1gRWLMOkkXE_vd5VqA8yJ
 
 ## Screenshots
 
-  Splash screen                 |   Login screen        |  Verify screen with notification | Verify screen 
+  Splash screen                 |   Home screen        | Home screen | Finshed Matches screen 
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-|
+![photo_2022-11-25_21-15-48](https://user-images.githubusercontent.com/55716560/204043947-9d542ca4-2043-429c-b376-443273020905.jpg)|![photo_2022-11-25_21-15-55](https://user-images.githubusercontent.com/55716560/204043972-cfd1ce77-6662-451f-a9e7-c95a8b5ee6c5.jpg)|![photo_2022-11-25_21-18-21](https://user-images.githubusercontent.com/55716560/204044085-4924cd0b-c17b-400c-aa61-2c66d2653a95.jpg)|![photo_2022-11-25_21-18-48](https://user-images.githubusercontent.com/55716560/204044141-87281015-0d4c-4c94-81a7-4fa565bcd90b.jpg)
+
+
+
+
 
   Home screen                 |   Product Details screen        |  Help Screen 
 :-------------------------:|:-------------------------:|:-------------------------:
