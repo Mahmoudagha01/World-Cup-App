@@ -29,8 +29,8 @@ This folder containes the business logic of the application specificly state man
 business_logic
 ├── Services_cubit
 ├── News_cubit
-├── _cubit
-└── help_cubit
+├── Upcoming_matches_cubit
+└── Glopal_cubit
 ```
 
 ### data
@@ -46,23 +46,14 @@ data
 This folder containes everything related to the Ui f the application.
 ```
 presentation
-├── screens
+├── views
 └── widget
 ```
 
 ### Helper
 This folder containes Network helper , shared Prefereace and Local notifiation.
 ```
-helper
-├── local
-├── remote
-└── notification
-```
-
-### Utilities
-This folder containes routing and constants
-```
-Utilities 
+helper 
 ├── constants.dart
 ├── routes.dart
 └── router.dart
